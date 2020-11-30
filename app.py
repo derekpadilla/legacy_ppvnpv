@@ -1,3 +1,5 @@
+import os
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -5,6 +7,8 @@ import numpy as np
 from dash.dependencies import Input, Output
 
 app = dash.Dash()
+
+server = app.server
 
 app.layout = html.Div([
     html.H2("Positive and Negative Predictive Value Calculator"),
@@ -74,5 +78,4 @@ def update_value(sens,spec):
     )
 
 if __name__ == '__main__':
-    app.run_server()
-
+    app.run_server(debug=True)
