@@ -4,7 +4,7 @@ import dash_html_components as html
 import numpy as np
 from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, title='PredictiveValue.info')
 
 server = app.server
 
@@ -15,7 +15,7 @@ app.layout = html.Div([
 
     html.Div([
         html.P(["Sensitivity: ",
-            dcc.Input(id='sens', value=90, type='number', style={'width': 45}, min="0", max="100"),
+            dcc.Input(id='sens', value=98, type='number', style={'width': 45}, min="0", max="100"),
             " = the percent of positive samples that are correctly identified by the test."]),
 
         html.P(["Specificity: ",
@@ -30,9 +30,15 @@ app.layout = html.Div([
     html.H4("Definitions"),
 
     html.Div([
-        html.P("Positive Predictive Vaule (PPV) = Percent of positive test results that are correct"),
-        html.P("Negative Predictive Value (NPV) = Percent of negative test results that are correct"),
-        html.P("Prevalence = The percent of a population who should test positive, e.g. the percent who have the disease you're testing for."),
+        html.P("Positive Predictive Vaule (PPV): Percent of positive test results that are correct."),
+        html.Div([
+            html.P("PPV = (Sensitivity x Prevalance)/[(Sensitivity x Prevlance) + (100 - Specificity)(100 - Prevalance)]"),
+            ],style={'marginLeft': 50}),
+        html.P("Negative Predictive Value (NPV): Percent of negative test results that are correct."),
+        html.Div([
+            html.P("NPV = [Specificity x (100 - Prevalance)]/[(100 - Sensitivity)(Prevlance) + (Specificity)(100 - Prevalance)]"),
+            ],style={'marginLeft': 50}),
+        html.P("Prevalence: The percent of a population who should test positive, e.g. the percent who have the disease you're testing for."),
     ], style={'marginLeft': 25}),
 
     html.H4("Example"),
@@ -89,4 +95,4 @@ def update_value(sens,spec):
     )
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False,dev_tools_ui=False,dev_tools_props_check=False)
