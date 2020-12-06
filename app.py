@@ -4,7 +4,7 @@ import dash_html_components as html
 import numpy as np
 from dash.dependencies import Input, Output
 
-app = dash.Dash()
+app = dash.Dash(__name__)
 
 server = app.server
 
