@@ -6,11 +6,10 @@ from plotly.subplots import make_subplots
 
 
 
-server = app.server
-
 # Custom CSS styles
 external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, title='PredictiveValue.info')
+server = app.server
 
 # Define color scheme
 colors = {
